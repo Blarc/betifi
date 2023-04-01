@@ -5,7 +5,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.github.blarc.R
+import com.github.blarc.UIUtils
+import com.github.blarc.activities.ChallengeCreateActivity
 import com.github.blarc.entity.Item
+import com.github.blarc.fragments.ChallengeCreateFragment
 import com.github.blarc.inflate
 import java.util.*
 
@@ -37,6 +40,15 @@ class ItemsAdapter(
         }
 
         override fun onClick(v: View?) {
+            v?.context?.let { context ->
+                if (context is ChallengeCreateActivity) {
+                    UIUtils.replaceFragment(
+                        context,
+                        R.id.challenge_create_fragment_container,
+                        ChallengeCreateFragment::class.java
+                    )
+                }
+            }
 
         }
 

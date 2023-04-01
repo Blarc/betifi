@@ -142,17 +142,12 @@ object FirebaseUtils {
             }
         })
     }
-    fun subscribeToUserOnFirebase(setValue: (User) -> Unit) {
+    fun subscribeToUserOnFirebase(setValue: (User?) -> Unit) {
         // fill in user items list
         database.getReference("users").child(getIdOfCurUser()).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val user = dataSnapshot.getValue(User::class.java)
-
-                if (user != null) {
-                    setValue(user)
-                } else {
-                    Log.d(ContentValues.TAG, "user can not be deserialized!")
-                }
+                setValue(user)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

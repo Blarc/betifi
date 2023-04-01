@@ -46,13 +46,16 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val userRef = FirebaseUtils.getUser(userIdValue)
-
+            MyApplication.curUserId = userIdValue
             FirebaseUtils.subscribeToUserOnFirebase {
-                MyApplication.curUserId = userIdValue
-                // Create the user in the database
+                if (it != null) {
+                    Log.d(TAG, "User $userIdValue already exists")
+                    navigateToMainActivity()
+                    return@subscribeToUserOnFirebase
+                }
 
-                FirebaseUtils.subscribeToSpecificItem("1") {
+                // Create the user in the database
+                FirebaseUtils.subscribeToSpecificItem("0") {
 
                     val user = User(userIdValue, listOf(), listOf())
                     if (it != null) {
