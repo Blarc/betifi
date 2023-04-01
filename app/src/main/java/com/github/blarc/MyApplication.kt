@@ -1,4 +1,9 @@
 package com.github.blarc
 
-class MyApplication {
+import android.app.Application
+
+internal class MyApplication : Application() {
+    companion object {
+        var curUserId = ""
+    }
 }
