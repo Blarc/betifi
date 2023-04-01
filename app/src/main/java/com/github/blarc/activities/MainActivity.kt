@@ -43,5 +43,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+        bottomNavBar.selectedItemId = R.id.bottom_nav_character
     }
 }
