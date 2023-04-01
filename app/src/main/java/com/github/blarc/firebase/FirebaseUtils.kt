@@ -41,7 +41,7 @@ object FirebaseUtils {
     }
 
     fun subscribeToFriendsChallengesOnFirebase(setValue: (List<Challenge>) -> Unit) {
-        database.getReference(getIdOfCurUser()).child("challenges")
+        database.getReference("users").child(getIdOfCurUser()).child("challenges")
             .addValueEventListener(object :
                 ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
