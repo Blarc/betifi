@@ -7,7 +7,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import com.github.blarc.activities.MainActivity
+import com.github.blarc.entity.Item
+import com.github.blarc.entity.User
 import com.github.blarc.firebase.FirebaseUtils
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -24,6 +28,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        val viewModel = ViewModelProvider(this)[BaseViewModel::class.java]
 
         loginButton = findViewById(R.id.activityLoginButtonLogin)
         userId = findViewById(R.id.activityLoginEditTextName)
@@ -50,7 +56,10 @@ class LoginActivity : AppCompatActivity() {
                     } else {
                         MyApplication.curUserId = userIdValue
                         // Create the user in the database
-                        userRef.setValue("your_user_data")
+
+                        var user = User(listOf(viewModel.basicItem), listOf())
+
+                        FirebaseUtils.createUser(user, userIdValue)
                         Log.d(TAG, "User $userIdValue created")
 
                         navigateToMainActivity()

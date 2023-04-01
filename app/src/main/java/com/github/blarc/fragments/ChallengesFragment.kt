@@ -10,7 +10,6 @@ import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import com.github.blarc.BaseViewModel
 import com.github.blarc.R
-import com.github.blarc.UIUtils.replaceFragment
 import com.github.blarc.activities.ChallengeCreateActivity
 import com.github.blarc.activities.ChallengeDetailActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton

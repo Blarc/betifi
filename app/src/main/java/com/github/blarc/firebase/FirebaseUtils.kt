@@ -1,9 +1,10 @@
 package com.github.blarc.firebase
 
 import com.github.blarc.MyApplication.Companion.curUserId
+import com.github.blarc.entity.Challenge
+import com.github.blarc.entity.Item
 import com.github.blarc.entity.User
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 
 object FirebaseUtils {
@@ -22,12 +23,19 @@ object FirebaseUtils {
         return getUsersRef().child(userId)
     }
 
-    fun addUser(user: User) {
-        val myRef = database.getReference(user.id)
-
-        myRef.setValue(user)
+    fun createUser(user: User, userId: String) {
+        getUser(userId).setValue(user)
     }
 
+    fun assignChallengeToUser(challenge: Challenge) {
+        val newChallengeRef = getUser(getIdOfCurUser()).child("challenges").push()
 
+        newChallengeRef.setValue(challenge)
+    }
 
+    fun assignItemToUser(item: Item) {
+        val newItemRef = getUser(getIdOfCurUser()).child("items").push()
+
+        newItemRef.setValue(item);
+    }
 }
