@@ -49,7 +49,7 @@
             android:layout_height="110dp"
             android:layout_toLeftOf="@id/characterImageView"
             android:layout_marginRight="0dp"
-            android:src="@drawable/item_sellector_elipse"/>
+            android:src="@drawable/item_sellector_elipse" />
 
         <com.caverock.androidsvg.SVGImageView
             android:id="@+id/svgImageView2"
