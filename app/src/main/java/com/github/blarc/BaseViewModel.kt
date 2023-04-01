@@ -7,12 +7,27 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.blarc.entity.Challenge
 import com.github.blarc.entity.Item
+import com.github.blarc.entity.User
 import com.github.blarc.firebase.FirebaseUtils
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
 class BaseViewModel : ViewModel() {
+    val challenges = MutableLiveData<MutableList<Challenge>>(mutableListOf(
+        Challenge("Title 1", "Desc 1", "Id 1", "Created by 1"),
+        Challenge("Title 2", "Desc 2", "Id 2", "Created by 2"),
+        Challenge("Title 3", "Desc 3", "Id 3", "Created by 3"),
+        Challenge("Title 4", "Desc 4", "Id 4", "Created by 4")
+    ))
+
+    val friends = MutableLiveData<MutableList<User>>(mutableListOf(
+        User("Martin"),
+        User("Jakob"),
+        User("Gabrijel"),
+        User("Matic"),
+        User("Gregor")
+    ))
 
     val userCompletedChallenges = MutableLiveData<MutableList<Challenge>>(mutableListOf())
     val userItems = MutableLiveData<MutableList<Item>>(mutableListOf())
@@ -107,5 +122,4 @@ class BaseViewModel : ViewModel() {
             }
         })
     }
-
 }

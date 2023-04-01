@@ -1,21 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ChallengeDetail">
+    tools:context=".fragments.ChallengeDetailFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Challenge detail fragment" />
-
-    <Button
-        android:id="@+id/fragmentChallengeDetailButtonComplete"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Open"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
+        android:orientation="vertical"
+        tools:context=".fragments.CreateChallengeFragment">
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+            tools:layout_editor_absoluteX="0dp"
+            android:background="@drawable/challenge_input_field"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp"
+            android:alpha="0.9"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Title :"
+                android:textColor="#6691b4"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <LinearLayout
+                android:id="@+id/linearLayout10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp"
+                android:background="@drawable/challenge_input_field_in"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="25dp"
+                >
+
+                <TextView
+                    android:id="@+id/challenge_title_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Challenge title"
+                    android:textSize="20dp"
+                    android:inputType="textMultiLine">
+                    >
+
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+            tools:layout_editor_absoluteX="0dp"
+            android:background="@drawable/challenge_input_field"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp"
+            android:alpha="0.9"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Description :"
+                android:textColor="#6691b4"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <LinearLayout
+                android:id="@+id/linearLayout11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp"
+                android:background="@drawable/challenge_input_field_in"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="25dp"
+                >
+
+                <TextView
+                    android:id="@+id/challenge_title_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Description"
+                    android:textSize="20dp"
+                    android:inputType="textMultiLine">
+
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="136dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+            tools:layout_editor_absoluteX="0dp"
+            android:background="@drawable/challenge_input_field"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp"
+            android:alpha="0.9"
+            >
+
+            <TextView
+                android:id="@+id/details_challenge_due_or_completed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Completed on :"
+                android:textColor="#6691b4"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <LinearLayout
+                android:id="@+id/linearLayout12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp"
+                android:background="@drawable/challenge_input_field_in"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="25dp"
+                >
+
+                <TextView
+                    android:id="@+id/challenge_title_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Today"
+                    android:textSize="20dp"
+                    android:inputType="date">
+
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/details_challenge_finish_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp"
+            android:text="Finish"
+            />
+    </LinearLayout>
+
+<!--    <Button-->
+<!--        android:id="@+id/fragmentChallengeDetailButtonComplete"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Open"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="20dp"/>-->
+
+</ScrollView>

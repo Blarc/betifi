@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
                         MyApplication.curUserId = userIdValue
                         // Create the user in the database
 
-                        var user = User(listOf(viewModel.basicItem), listOf())
+                        var user = User(userIdValue, listOf(viewModel.basicItem), listOf())
 
                         FirebaseUtils.createUser(user, userIdValue)
                         Log.d(TAG, "User $userIdValue created")

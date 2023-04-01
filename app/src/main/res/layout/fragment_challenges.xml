@@ -6,20 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ChallengesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/fragmentChallengesSwipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Challenges Fragment" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingTop="10dp"
+        >
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragmentChallengesRecylerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            tools:listitem="@layout/challenge_item" />
 
-    <Button
-        android:id="@+id/fragmentChallengesButtonDetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Open"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

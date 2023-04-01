@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.ChallengeCompleteFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Challenge complete fragment" />
+        android:id="@+id/fragmentChallengeCompleteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Moonlight Gloves"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/fragmentChallengeCompleteImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fragmentChallengeCompleteImageView"
+        android:layout_width="200sp"
+        android:layout_height="200sp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentChallengeCompleteButtonComplete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentChallengeCompleteTextView" />
 
     <Button
         android:id="@+id/fragmentChallengeCompleteButtonComplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Complete"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
+        android:text="Take"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentChallengeCompleteImageView"/>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
