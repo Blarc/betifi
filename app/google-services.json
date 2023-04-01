@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "344241361848",
+    "project_id": "estec-challenge-2023",
+    "storage_bucket": "estec-challenge-2023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344241361848:android:a7ae8d7ec37dd547bf354d",
+        "android_client_info": {
+          "package_name": "com.github.blarc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "344241361848-4l96pfg6a91nkabcfpi22842k86fm7ae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGQh5Rff2Lf4Jsmz6o4EHvj6RY20nPESc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "344241361848-4l96pfg6a91nkabcfpi22842k86fm7ae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
