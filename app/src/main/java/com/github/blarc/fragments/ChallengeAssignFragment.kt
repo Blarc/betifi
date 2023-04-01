@@ -10,19 +10,17 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.github.blarc.BaseViewModel
 import com.github.blarc.R
-import com.github.blarc.adapters.UserAdapter
+import com.github.blarc.adapters.UsersAdapter
 import com.github.blarc.entity.User
+import com.github.blarc.firebase.FirebaseUtils
 
 
 class ChallengeAssignFragment : Fragment() {
     private lateinit var friendsList: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    private lateinit var adapter: UserAdapter
-
-    private val baseViewModel: BaseViewModel by activityViewModels()
+    private lateinit var adapter: UsersAdapter
 
     companion object {
         @JvmStatic
@@ -49,15 +47,16 @@ class ChallengeAssignFragment : Fragment() {
 
         friendsList = view.findViewById(R.id.assign_challenge_users_list)
 
-        baseViewModel.friends.observe(viewLifecycleOwner) {
-            setupFriendsList(ArrayList(it))
+        FirebaseUtils.subscribeToUsersOnFirebase {
+            setupFriendsList(it)
         }
+
     }
 
-    private fun setupFriendsList(users: ArrayList<User>) {
+    private fun setupFriendsList(users: List<User>) {
         linearLayoutManager = LinearLayoutManager(context)
 
-        adapter = UserAdapter(users, R.layout.assign_challenge_item, this.requireContext())
+        adapter = UsersAdapter(ArrayList(users), R.layout.assign_challenge_item, this.requireContext())
 
         friendsList.layoutManager = linearLayoutManager
         friendsList.adapter = adapter

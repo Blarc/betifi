@@ -8,8 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.github.blarc.BaseViewModel
 import com.github.blarc.R
+import com.github.blarc.UIUtils
 
 
 class ChallengeCreateFragment : Fragment() {
@@ -19,8 +19,8 @@ class ChallengeCreateFragment : Fragment() {
     private lateinit var challengeTitle: EditText
     private lateinit var challengeDescription: EditText
     private lateinit var challengesDate: EditText
-
-    private val baseViewModel: BaseViewModel by activityViewModels()
+    private lateinit var receiveItemBtn: Button
+    private lateinit var giveItemBtn: Button
 
     companion object {
         @JvmStatic
@@ -47,6 +47,25 @@ class ChallengeCreateFragment : Fragment() {
         challengeTitle = view.findViewById(R.id.challenge_title_input)
         challengeDescription = view.findViewById(R.id.challenge_title_desc)
         challengesDate = view.findViewById(R.id.challenge_title_date)
+
+        receiveItemBtn = view.findViewById(R.id.challenge_receive_item)
+        giveItemBtn = view.findViewById(R.id.challenge_give_item)
+
+        receiveItemBtn.setOnClickListener {
+            UIUtils.replaceFragment(
+                requireActivity(),
+                R.id.challenge_create_fragment_container,
+                InventoryFragment::class.java
+            )
+        }
+
+        giveItemBtn.setOnClickListener {
+            UIUtils.replaceFragment(
+                requireActivity(),
+                R.id.challenge_create_fragment_container,
+                InventoryFragment::class.java
+            )
+        }
 
     }
 }

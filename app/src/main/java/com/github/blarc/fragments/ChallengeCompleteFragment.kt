@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.activityViewModels
-import com.github.blarc.BaseViewModel
 import com.github.blarc.R
 import com.github.blarc.activities.MainActivity
 
@@ -16,9 +15,6 @@ import com.github.blarc.activities.MainActivity
 class ChallengeCompleteFragment : Fragment() {
 
     private lateinit var completeChallengeBtn: Button;
-
-
-    private val baseViewModel: BaseViewModel by activityViewModels()
 
     companion object {
         fun newInstance() = ChallengeCompleteFragment()

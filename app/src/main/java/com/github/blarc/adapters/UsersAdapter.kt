@@ -13,11 +13,11 @@ import com.github.blarc.fragments.ChallengeCreateFragment
 import com.github.blarc.inflate
 import kotlin.random.Random
 
-class UserAdapter(
+class UsersAdapter(
     private var users: ArrayList<User>,
     private var layoutId: Int,
     private var context: Context?
-): RecyclerView.Adapter<UserAdapter.UserHolder>() {
+): RecyclerView.Adapter<UsersAdapter.UserHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
 
@@ -42,7 +42,6 @@ class UserAdapter(
     inner class UserHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
         private var view: View = v
         private var user: User? = null
-        private var btnChecked: Boolean = false
 
         init {
             v.setOnClickListener(this)
@@ -50,7 +49,7 @@ class UserAdapter(
 
         override fun onClick(v: View?) {
             val activity = context as ChallengeCreateActivity
-            activity.addOrRemoveUserFromSelectedList(user!!)
+            activity.selectedFriend = user
             replaceFragment(activity, R.id.challenge_create_fragment_container, ChallengeCreateFragment::class.java)
 
         }

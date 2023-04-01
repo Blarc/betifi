@@ -12,15 +12,17 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.github.blarc.BaseViewModel
 import com.github.blarc.R
 import com.github.blarc.activities.ChallengeCreateActivity
 import com.github.blarc.entity.Challenge
 import com.github.blarc.adapters.ChallengesAdapter
+import com.github.blarc.firebase.FirebaseUtils
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ChallengesFragment : Fragment() {
-    private lateinit var completeChallengeBtn: Button
+
+    private lateinit var generalChallengesBtn: Button
+    private lateinit var friendsChallengesBtn: Button
 
     private lateinit var challengesList: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
@@ -28,9 +30,10 @@ class ChallengesFragment : Fragment() {
     private lateinit var adapter: ChallengesAdapter
 
     private lateinit var createChallengeBtn: FloatingActionButton
-    private lateinit var detailChallengeBtn: Button
 
-    private val baseViewModel: BaseViewModel by activityViewModels()
+    private var generalChallenges = ArrayList<Challenge>()
+    private var friendsChallenges = ArrayList<Challenge>()
+    private var firstTime = true
 
     companion object {
         @JvmStatic
@@ -47,11 +50,27 @@ class ChallengesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-//        detailChallengeBtn = view.findViewById(R.id.fragmentChallengesButtonDetail)
-//        detailChallengeBtn.setOnClickListener {
-//            val intent = Intent(context, ChallengeDetailActivity::class.java)
-//            startActivity(intent)
-//        }
+        FirebaseUtils.subscribeToGeneralChallengesOnFirebase {
+            generalChallenges = ArrayList(it)
+            if (firstTime) {
+                setupChallengesList(generalChallenges)
+                firstTime = false
+            }
+        }
+
+        FirebaseUtils.subscribeToFriendsChallengesOnFirebase {
+            friendsChallenges = ArrayList(it)
+        }
+
+        generalChallengesBtn = view.findViewById(R.id.fragmentChallengesButtonGeneral)
+        generalChallengesBtn.setOnClickListener {
+            setupChallengesList(generalChallenges)
+        }
+
+        friendsChallengesBtn = view.findViewById(R.id.fragmentChallengesButtonFriends)
+        friendsChallengesBtn.setOnClickListener {
+            setupChallengesList(friendsChallenges)
+        }
 
         createChallengeBtn = view.findViewById(R.id.fragmentChallengesButtonCreate)
         createChallengeBtn.setOnClickListener {
@@ -69,9 +88,6 @@ class ChallengesFragment : Fragment() {
 
         challengesList = view.findViewById(R.id.fragmentChallengesRecylerView)
 
-        baseViewModel.challenges.observe(viewLifecycleOwner) {
-            setupChallengesList(ArrayList(it))
-        }
     }
 
     private fun setupChallengesList(challenges: ArrayList<Challenge>) {

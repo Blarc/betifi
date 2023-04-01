@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.github.blarc.activities.MainActivity
@@ -29,8 +30,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val viewModel = ViewModelProvider(this)[BaseViewModel::class.java]
-
         loginButton = findViewById(R.id.activityLoginButtonLogin)
         userId = findViewById(R.id.activityLoginEditTextName)
 
@@ -40,12 +39,14 @@ class LoginActivity : AppCompatActivity() {
             // This is just reference how to connect
 //            val database = FirebaseDatabase.getInstance("https://estec-challenge-2023-default-rtdb.europe-west1.firebasedatabase.app/")
 //            val myRef = database.getReference("message")
-//
-//            myRef.setValue("Hello, World!")
+
             val userIdValue = userId.text.toString()
+            if (userIdValue.isEmpty()) {
+                Toast.makeText(this, "Please enter a user id", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             val userRef = FirebaseUtils.getUser(userIdValue)
-
             userRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -57,12 +58,18 @@ class LoginActivity : AppCompatActivity() {
                         MyApplication.curUserId = userIdValue
                         // Create the user in the database
 
-                        var user = User(userIdValue, listOf(viewModel.basicItem), listOf())
+                        FirebaseUtils.subscribeToSpecificItem("1") {
 
-                        FirebaseUtils.createUser(user, userIdValue)
-                        Log.d(TAG, "User $userIdValue created")
+                            val user = User(userIdValue, listOf(), listOf())
+                            if (it != null) {
+                                user.items = listOf(it)
+                            }
 
-                        navigateToMainActivity()
+                            FirebaseUtils.createUser(user, userIdValue)
+                            Log.d(TAG, "User $userIdValue created")
+
+                            navigateToMainActivity()
+                        }
                     }
                 }
 

@@ -6,12 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.github.blarc.BaseViewModel
 import com.github.blarc.R
 
 class FeedFragment : Fragment() {
-    private val baseViewModel: BaseViewModel by activityViewModels()
-
     companion object {
         @JvmStatic
         fun newInstance() = FeedFragment()
