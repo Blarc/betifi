@@ -15,6 +15,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/main_bottom_nav_bar"/>
 
+<!--    <com.caverock.androidsvg.SVGImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:src="@drawable/senca_navigator_bar"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/main_bottom_nav_bar" />-->
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bottom_nav_bar"
