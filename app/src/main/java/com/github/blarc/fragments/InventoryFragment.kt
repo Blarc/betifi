@@ -40,14 +40,14 @@ class InventoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var selectedFriend: User? = null
+        var selectedUser: User? = null
         if (context is ChallengeCreateActivity) {
-            selectedFriend = (context as ChallengeCreateActivity).selectedFriend
+            selectedUser = (context as ChallengeCreateActivity).selectedUser
         }
 
         itemsList = view.findViewById(R.id.fragmentInventoryRecylerView)
-        if (selectedFriend != null) {
-            setupItemsList(selectedFriend.items)
+        if (selectedUser != null) {
+            setupItemsList(selectedUser.items)
         } else {
             FirebaseUtils.subscribeToUserItemsOnFirebase {
                 setupItemsList(it)

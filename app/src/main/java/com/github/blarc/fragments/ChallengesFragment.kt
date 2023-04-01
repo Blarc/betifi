@@ -23,17 +23,18 @@ class ChallengesFragment : Fragment() {
 
     private lateinit var generalChallengesBtn: Button
     private lateinit var friendsChallengesBtn: Button
-
     private lateinit var challengesList: RecyclerView
+
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var adapter: ChallengesAdapter
-
     private lateinit var createChallengeBtn: FloatingActionButton
 
     private var generalChallenges = ArrayList<Challenge>()
     private var friendsChallenges = ArrayList<Challenge>()
+
     private var firstTime = true
+    private var isGeneral = true
 
     companion object {
         @JvmStatic
@@ -49,10 +50,11 @@ class ChallengesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         FirebaseUtils.subscribeToGeneralChallengesOnFirebase {
             generalChallenges = ArrayList(it)
-            if (firstTime) {
+            if (firstTime || isGeneral) {
                 setupChallengesList(generalChallenges)
                 firstTime = false
             }
@@ -64,11 +66,13 @@ class ChallengesFragment : Fragment() {
 
         generalChallengesBtn = view.findViewById(R.id.fragmentChallengesButtonGeneral)
         generalChallengesBtn.setOnClickListener {
+            isGeneral = true
             setupChallengesList(generalChallenges)
         }
 
         friendsChallengesBtn = view.findViewById(R.id.fragmentChallengesButtonFriends)
         friendsChallengesBtn.setOnClickListener {
+            isGeneral = false
             setupChallengesList(friendsChallenges)
         }
 

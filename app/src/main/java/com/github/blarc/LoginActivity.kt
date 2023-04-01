@@ -47,36 +47,24 @@ class LoginActivity : AppCompatActivity() {
             }
 
             val userRef = FirebaseUtils.getUser(userIdValue)
-            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        MyApplication.curUserId = userIdValue
-                        Log.d(TAG, "User $userIdValue exists")
 
-                        navigateToMainActivity()
-                    } else {
-                        MyApplication.curUserId = userIdValue
-                        // Create the user in the database
+            FirebaseUtils.subscribeToUserOnFirebase {
+                MyApplication.curUserId = userIdValue
+                // Create the user in the database
 
-                        FirebaseUtils.subscribeToSpecificItem("1") {
+                FirebaseUtils.subscribeToSpecificItem("1") {
 
-                            val user = User(userIdValue, listOf(), listOf())
-                            if (it != null) {
-                                user.items = listOf(it)
-                            }
-
-                            FirebaseUtils.createUser(user, userIdValue)
-                            Log.d(TAG, "User $userIdValue created")
-
-                            navigateToMainActivity()
-                        }
+                    val user = User(userIdValue, listOf(), listOf())
+                    if (it != null) {
+                        user.items = listOf(it)
                     }
-                }
 
-                override fun onCancelled(databaseError: DatabaseError) {
-                    Log.e(TAG, "onCancelled", databaseError.toException())
+                    FirebaseUtils.createUser(user, userIdValue)
+                    Log.d(TAG, "User $userIdValue created")
+
+                    navigateToMainActivity()
                 }
-            })
+            }
         }
     }
 

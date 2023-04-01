@@ -10,6 +10,7 @@ import com.github.blarc.fragments.ChallengeAssignFragment
 class ChallengeCreateActivity : AppCompatActivity() {
 
     var selectedFriend: User? = null
+    var selectedUser: User? = null
     var challenge: Challenge? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

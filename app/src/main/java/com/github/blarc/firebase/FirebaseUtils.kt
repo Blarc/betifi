@@ -68,8 +68,7 @@ object FirebaseUtils {
     }
 
     fun subscribeToGeneralChallengesOnFirebase(setValue: (List<Challenge>) -> Unit) {
-        database.getReference("challenges").addValueEventListener(object :
-            ValueEventListener {
+        database.getReference("challenges").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val challenges = mutableListOf<Challenge>()
 
@@ -142,9 +141,25 @@ object FirebaseUtils {
                 Log.e(ContentValues.TAG, "onCancelled", databaseError.toException())
             }
         })
-
     }
+    fun subscribeToUserOnFirebase(setValue: (User) -> Unit) {
+        // fill in user items list
+        database.getReference("users").child(getIdOfCurUser()).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val user = dataSnapshot.getValue(User::class.java)
 
+                if (user != null) {
+                    setValue(user)
+                } else {
+                    Log.d(ContentValues.TAG, "user can not be deserialized!")
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.e(ContentValues.TAG, "onCancelled", databaseError.toException())
+            }
+        })
+    }
     fun subscribeToItemsOnFirebase(setValue: (List<Item>) -> Unit) {
         // fill in user items list
         database.getReference("items").addValueEventListener(object : ValueEventListener {
