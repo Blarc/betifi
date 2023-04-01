@@ -54,7 +54,7 @@ class ChallengeCreateFragment : Fragment() {
 
         giveItemBtn = view.findViewById(R.id.challenge_give_item)
         giveItemBtn.setOnClickListener {
-            FirebaseUtils.subscribeToUserOnFirebase {
+            FirebaseUtils.getUserOnFirebase {
                 challengeCreateActivity.selectedUser = it
                 UIUtils.replaceFragment(
                     requireActivity(),
@@ -67,7 +67,7 @@ class ChallengeCreateFragment : Fragment() {
         createChallengeBtn = view.findViewById(R.id.create_challenge_create_user_btn)
         createChallengeBtn.setOnClickListener {
             val newChallenge = createChallenge()
-            FirebaseUtils.subscribeToUserOnFirebase {
+            FirebaseUtils.getUserOnFirebase {
                 it?.let { user ->
                     FirebaseUtils.updateUserChallenges(
                         user.userId,

@@ -6,12 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import com.caverock.androidsvg.SVGImageView
 import com.github.blarc.R
 import com.github.blarc.UIUtils
+import com.github.blarc.firebase.FirebaseUtils
 
 
 class CharacterFragment : Fragment() {
+
+    // Create map of equipment to svg image view
+    private val equipmentViews = mapOf(
+        "head" to R.id.svgImageView1,
+        "torso" to R.id.svgImageView2,
+        "feet" to R.id.svgImageView3,
+        "mainHand" to R.id.svgImageView4,
+        "offHand" to R.id.svgImageView5,
+        "legs" to R.id.svgImageView6
+    )
 
     companion object {
         @JvmStatic
@@ -28,59 +38,23 @@ class CharacterFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val svgImageView1 = view.findViewById<ImageView>(R.id.svgImageView1)
-        svgImageView1.setOnClickListener {
 
-            UIUtils.replaceFragment(
-                requireActivity(),
-                R.id.main_fragment_container,
-                InventoryFragment.newInstance("head")
-            )
-        }
+        FirebaseUtils.subscribeToUserEquipmentOnFirebase {
 
-        val svgImageView2 = view.findViewById<ImageView>(R.id.svgImageView2)
-        svgImageView2.setOnClickListener {
-            UIUtils.replaceFragment(
-                requireActivity(),
-                R.id.main_fragment_container,
-                InventoryFragment.newInstance("mainHand")
-            )
-        }
+            // TODO: Set equipment images via it
 
-        val svgImageView3 = view.findViewById<ImageView>(R.id.svgImageView3)
-        svgImageView3.setOnClickListener {
-            UIUtils.replaceFragment(
-                requireActivity(),
-                R.id.main_fragment_container,
-                InventoryFragment.newInstance("offHand")
-            )
-        }
+            // Loop through equipment views and set click listeners
+            for (equipmentView in equipmentViews) {
+                val svgImageView = view.findViewById<ImageView>(equipmentView.value)
 
-        val svgImageView4 = view.findViewById<ImageView>(R.id.svgImageView4)
-        svgImageView4.setOnClickListener {
-            UIUtils.replaceFragment(
-                requireActivity(),
-                R.id.main_fragment_container,
-                InventoryFragment.newInstance("torso")
-            )
-        }
-
-        val svgImageView5 = view.findViewById<ImageView>(R.id.svgImageView5)
-        svgImageView5.setOnClickListener {
-            UIUtils.replaceFragment(
-                requireActivity(),
-                R.id.main_fragment_container,
-                InventoryFragment.newInstance("legs")
-            )
-        }
-
-        val svgImageView6 = view.findViewById<ImageView>(R.id.svgImageView6)
-        svgImageView6.setOnClickListener {
-            UIUtils.replaceFragment(
-                requireActivity(),
-                R.id.main_fragment_container,
-                InventoryFragment.newInstance("feet")
-            )
+                svgImageView.setOnClickListener {
+                    UIUtils.replaceFragment(
+                        requireActivity(),
+                        R.id.main_fragment_container,
+                        InventoryFragment.newInstance(equipmentView.key)
+                    )
+                }
+            }
         }
     }
 }

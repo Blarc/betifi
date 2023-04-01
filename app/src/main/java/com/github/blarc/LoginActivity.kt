@@ -8,18 +8,9 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import com.github.blarc.activities.MainActivity
-import com.github.blarc.entity.Item
 import com.github.blarc.entity.User
 import com.github.blarc.firebase.FirebaseUtils
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
 
@@ -47,11 +38,11 @@ class LoginActivity : AppCompatActivity() {
             }
 
             MyApplication.curUserId = userIdValue
-            FirebaseUtils.subscribeToUserOnFirebase {
+            FirebaseUtils.getUserOnFirebase {
                 if (it != null) {
                     Log.d(TAG, "User $userIdValue already exists")
                     navigateToMainActivity()
-                    return@subscribeToUserOnFirebase
+                    return@getUserOnFirebase
                 }
 
                 // Create the user in the database

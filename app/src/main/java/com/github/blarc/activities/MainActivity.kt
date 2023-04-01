@@ -6,7 +6,7 @@ import com.github.blarc.R
 import com.github.blarc.UIUtils.replaceFragment
 import com.github.blarc.fragments.ChallengesFragment
 import com.github.blarc.fragments.CharacterFragment
-import com.github.blarc.fragments.FeedFragment
+import com.github.blarc.fragments.InventoryFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.bottom_nav_feed -> replaceFragment(
                     this,
                     R.id.main_fragment_container,
-                    FeedFragment::class.java
+                    InventoryFragment::class.java
                 )
             }
             true

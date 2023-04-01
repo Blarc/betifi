@@ -22,7 +22,7 @@ object FirebaseUtils {
         return database.getReference("users")
     }
 
-    fun getUser(userId: String): DatabaseReference {
+    private fun getUser(userId: String): DatabaseReference {
         return getUsersRef().child(userId)
     }
 
@@ -140,7 +140,7 @@ object FirebaseUtils {
             }
         })
     }
-    fun subscribeToUserOnFirebase(setValue: (User?) -> Unit) {
+    fun getUserOnFirebase(setValue: (User?) -> Unit) {
         // fill in user items list
         database.getReference("users").child(getIdOfCurUser()).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -153,6 +153,33 @@ object FirebaseUtils {
             }
         })
     }
+
+    fun subscribeToUserEquipmentOnFirebase(setValue: (List<Item>) -> Unit) {
+        // fill in user items list
+        database.getReference("users").child(getIdOfCurUser()).child("equipment").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val userItemsIn = mutableListOf<Item>()
+
+                // Loop through the children of the "items" node and create an Item object for each child
+                for (itemSnapshot in dataSnapshot.children) {
+                    val item = itemSnapshot.getValue(Item::class.java)
+
+                    if (item != null) {
+                        userItemsIn.add(item)
+                    } else {
+                        Log.d(ContentValues.TAG, "item can not be deserialized!")
+                    }
+                }
+
+                setValue(userItemsIn)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.e(ContentValues.TAG, "onCancelled", databaseError.toException())
+            }
+        })
+    }
+
     fun subscribeToItemsOnFirebase(setValue: (List<Item>) -> Unit) {
         // fill in user items list
         database.getReference("items").addValueEventListener(object : ValueEventListener {

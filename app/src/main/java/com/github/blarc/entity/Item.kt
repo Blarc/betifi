@@ -7,5 +7,6 @@ data class Item(
     val type: String = "",
     val iconRef: String = "",
     val staked: Boolean = false,
-    val canBeStaked: Boolean = false
+    val canBeStaked: Boolean = false,
+    val rarity: String = "common",
 ) : Serializable

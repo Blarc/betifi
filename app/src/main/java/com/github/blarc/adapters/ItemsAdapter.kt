@@ -2,6 +2,7 @@ package com.github.blarc.adapters
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.github.blarc.R
@@ -15,6 +16,13 @@ import java.util.*
 class ItemsAdapter(
     private var items: List<Item>
 ): RecyclerView.Adapter<ItemsAdapter.ItemHolder>() {
+
+    private val rarityOpacity = mapOf(
+        "common" to 0.4f,
+        "rare" to 0.6f,
+        "epic" to 0.8f,
+        "legendary" to 1f
+    )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsAdapter.ItemHolder {
 
@@ -55,6 +63,13 @@ class ItemsAdapter(
         fun bindItem(item: Item) {
             this.item = item
 
+            val avatarImageView: ImageView = view.findViewById(R.id.inventory_item_avatar)
+            view.context.resources.getIdentifier(
+                "inventory_item_shirt_red",
+                "drawable",
+                view.context.packageName
+            ).let { avatarImageView.setImageResource(it) }
+
             val titleTextView: TextView = view.findViewById(R.id.inventory_item_title)
             titleTextView.text = item.name.replaceFirstChar {
                 if (it.isLowerCase()) it.titlecase(
@@ -63,11 +78,8 @@ class ItemsAdapter(
             }
 
             val rarityTextView: TextView = view.findViewById(R.id.inventory_item_rarity)
-            rarityTextView.text = item.name.replaceFirstChar {
-                if (it.isLowerCase()) it.titlecase(
-                    Locale.getDefault()
-                ) else it.toString()
-            }
+            rarityTextView.text = item.rarity.uppercase()
+            rarityTextView.alpha = rarityOpacity[item.rarity] ?: 1.0f
 
         }
     }
