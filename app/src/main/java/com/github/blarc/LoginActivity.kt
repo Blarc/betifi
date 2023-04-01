@@ -55,11 +55,11 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 // Create the user in the database
-                FirebaseUtils.subscribeToSpecificItem("0") {
+                FirebaseUtils.subscribeToSpecificItem("0") {item ->
 
                     val user = User(userIdValue, listOf(), listOf())
-                    if (it != null) {
-                        user.items = listOf(it)
+                    if (item != null) {
+                        user.items = listOf(item)
                     }
 
                     FirebaseUtils.createUser(user, userIdValue)

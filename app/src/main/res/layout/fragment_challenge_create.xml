@@ -291,12 +291,12 @@
 
             <Button
                 android:id="@+id/create_challenge_create_user_btn"
-                android:layout_width="129dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/challenge_input_field_in"
-                android:text="Assign"
+                android:text="Create challenge"
                 android:layout_gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
