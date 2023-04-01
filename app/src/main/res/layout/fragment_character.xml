@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:text="Level 7"
         android:textSize="30dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="75dp"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:fontFamily="@font/poppins_regular"
@@ -99,6 +99,7 @@
             android:layout_height="110dp"
             android:layout_toLeftOf="@id/characterImageView"
             android:layout_marginRight="0dp"
+            android:alpha="0.3"
             android:src="@drawable/hat" />
 
         <ImageView
@@ -117,6 +118,7 @@
             android:layout_toLeftOf="@id/characterImageView"
             android:layout_marginRight="0dp"
             android:layout_marginTop="145dp"
+            android:alpha="0.3"
             android:src="@drawable/shirt"/>
 
         <ImageView
@@ -134,6 +136,7 @@
             android:layout_height="110dp"
             android:layout_toLeftOf="@id/characterImageView"
             android:layout_marginRight="0dp"
+            android:alpha="0.3"
             android:layout_alignParentBottom="true"
             android:src="@drawable/shoes"/>
 
@@ -151,6 +154,7 @@
             android:layout_height="110dp"
             android:layout_toRightOf="@id/characterImageView"
             android:layout_marginRight="0dp"
+            android:alpha="0.3"
             android:src="@drawable/armour"/>
 
         <ImageView
@@ -169,6 +173,7 @@
             android:layout_toRightOf="@id/characterImageView"
             android:layout_marginRight="0dp"
             android:layout_marginTop="145dp"
+            android:alpha="0.3"
             android:src="@drawable/shield"/>
 
         <ImageView
@@ -187,6 +192,7 @@
             android:layout_toRightOf="@id/characterImageView"
             android:layout_marginRight="0dp"
             android:layout_alignParentBottom="true"
+            android:alpha="0.3"
             android:src="@drawable/pants"/>
 
     </RelativeLayout>
