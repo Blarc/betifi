@@ -16,7 +16,7 @@ import com.github.blarc.entity.Item
 import com.github.blarc.entity.User
 import com.github.blarc.firebase.FirebaseUtils
 
-class InventoryFragment : Fragment() {
+class InventoryFragment(val itemType: String? = null) : Fragment() {
 
     private lateinit var itemsList: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
@@ -25,7 +25,7 @@ class InventoryFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = InventoryFragment()
+        fun newInstance(itemType: String) = InventoryFragment(itemType)
     }
 
     override fun onCreateView(
@@ -49,7 +49,11 @@ class InventoryFragment : Fragment() {
             setupItemsList(selectedUser.items)
         } else {
             FirebaseUtils.subscribeToUserItemsOnFirebase {
-                setupItemsList(it)
+                if (itemType != null) {
+                    setupItemsList(it.filter { item -> item.type == itemType })
+                } else {
+                    setupItemsList(it)
+                }
             }
         }
 

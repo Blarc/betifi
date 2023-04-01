@@ -90,7 +90,7 @@ object FirebaseUtils {
 
     fun subscribeToUserItemsOnFirebase(setValue: (List<Item>) -> Unit) {
         // fill in user items list
-        database.getReference(getIdOfCurUser()).child("items")
+        database.getReference("users").child(getIdOfCurUser()).child("items")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val userItemsIn = mutableListOf<Item>()

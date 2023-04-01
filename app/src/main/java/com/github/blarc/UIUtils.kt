@@ -28,6 +28,15 @@ object UIUtils {
             .commit()
     }
 
+    fun replaceFragment(fragmentActivity: FragmentActivity, fragmentContainerId: Int, fragment: Fragment) {
+        // Insert the fragment by replacing any existing fragment
+        val fragmentManager = fragmentActivity.supportFragmentManager
+        fragmentManager.beginTransaction()
+            .replace(fragmentContainerId, fragment)
+            .addToBackStack(fragment.javaClass.name)
+            .commit()
+    }
+
     /**
      * Checks for specified permissions in fragment and asks for them if they haven't been acquired
      * yet.
