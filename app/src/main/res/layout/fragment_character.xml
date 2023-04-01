@@ -22,7 +22,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Level 0"
+        android:text="Level 7"
         android:textSize="30dp"
         android:layout_marginTop="70dp"
         android:textAlignment="center"
@@ -44,13 +44,48 @@
             android:layout_centerHorizontal="true"/>
 
         <ImageView
+            android:id="@+id/characterImageView1"
+            android:layout_width="200dp"
+            android:layout_height="400dp"
+            android:src="@drawable/empty_character"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
             android:id="@+id/characterImageView2"
             android:layout_width="200dp"
             android:layout_height="400dp"
-            android:src="@drawable/majca_1"
+            android:src="@drawable/empty_character"
             android:layout_centerHorizontal="true"/>
 
-        <com.caverock.androidsvg.SVGImageView
+        <ImageView
+            android:id="@+id/characterImageView3"
+            android:layout_width="200dp"
+            android:layout_height="400dp"
+            android:src="@drawable/empty_character"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:id="@+id/characterImageView4"
+            android:layout_width="200dp"
+            android:layout_height="400dp"
+            android:src="@drawable/empty_character"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:id="@+id/characterImageView5"
+            android:layout_width="200dp"
+            android:layout_height="400dp"
+            android:src="@drawable/empty_character"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:id="@+id/characterImageView6"
+            android:layout_width="200dp"
+            android:layout_height="400dp"
+            android:src="@drawable/empty_character"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
             android:id="@+id/svgImageView1"
             android:layout_width="110dp"
             android:layout_height="110dp"
@@ -58,7 +93,15 @@
             android:layout_marginRight="0dp"
             android:src="@drawable/item_sellector_elipse" />
 
-        <com.caverock.androidsvg.SVGImageView
+        <ImageView
+            android:id="@+id/svgImageView12"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_toLeftOf="@id/characterImageView"
+            android:layout_marginRight="0dp"
+            android:src="@drawable/hat" />
+
+        <ImageView
             android:id="@+id/svgImageView2"
             android:layout_width="110dp"
             android:layout_height="110dp"
@@ -67,7 +110,16 @@
             android:layout_marginTop="145dp"
             android:src="@drawable/item_sellector_elipse"/>
 
-        <com.caverock.androidsvg.SVGImageView
+        <ImageView
+            android:id="@+id/svgImageView22"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_toLeftOf="@id/characterImageView"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="145dp"
+            android:src="@drawable/shirt"/>
+
+        <ImageView
             android:id="@+id/svgImageView3"
             android:layout_width="110dp"
             android:layout_height="110dp"
@@ -76,7 +128,16 @@
             android:layout_alignParentBottom="true"
             android:src="@drawable/item_sellector_elipse"/>
 
-        <com.caverock.androidsvg.SVGImageView
+        <ImageView
+            android:id="@+id/svgImageView32"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_toLeftOf="@id/characterImageView"
+            android:layout_marginRight="0dp"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/shoes"/>
+
+        <ImageView
             android:id="@+id/svgImageView4"
             android:layout_width="110dp"
             android:layout_height="110dp"
@@ -84,7 +145,15 @@
             android:layout_marginRight="0dp"
             android:src="@drawable/item_sellector_elipse"/>
 
-        <com.caverock.androidsvg.SVGImageView
+        <ImageView
+            android:id="@+id/svgImageView42"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_toRightOf="@id/characterImageView"
+            android:layout_marginRight="0dp"
+            android:src="@drawable/armour"/>
+
+        <ImageView
             android:id="@+id/svgImageView5"
             android:layout_width="110dp"
             android:layout_height="110dp"
@@ -93,7 +162,16 @@
             android:layout_marginTop="145dp"
             android:src="@drawable/item_sellector_elipse"/>
 
-        <com.caverock.androidsvg.SVGImageView
+        <ImageView
+            android:id="@+id/svgImageView52"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_toRightOf="@id/characterImageView"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="145dp"
+            android:src="@drawable/shield"/>
+
+        <ImageView
             android:id="@+id/svgImageView6"
             android:layout_width="110dp"
             android:layout_height="110dp"
@@ -101,6 +179,15 @@
             android:layout_marginRight="0dp"
             android:layout_alignParentBottom="true"
             android:src="@drawable/item_sellector_elipse"/>
+
+        <ImageView
+            android:id="@+id/svgImageView62"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_toRightOf="@id/characterImageView"
+            android:layout_marginRight="0dp"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/pants"/>
 
     </RelativeLayout>
 
