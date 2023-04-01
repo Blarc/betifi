@@ -65,7 +65,7 @@ class ItemsAdapter(
 
             val avatarImageView: ImageView = view.findViewById(R.id.inventory_item_avatar)
             view.context.resources.getIdentifier(
-                "inventory_item_shirt_red",
+                "inventory_item_${item.iconRef}",
                 "drawable",
                 view.context.packageName
             ).let { avatarImageView.setImageResource(it) }

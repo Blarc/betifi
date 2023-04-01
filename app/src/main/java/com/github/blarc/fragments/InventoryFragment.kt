@@ -16,7 +16,7 @@ import com.github.blarc.entity.Item
 import com.github.blarc.entity.User
 import com.github.blarc.firebase.FirebaseUtils
 
-class InventoryFragment(val itemType: String? = null) : Fragment() {
+class InventoryFragment(private val itemType: String? = null) : Fragment() {
 
     private lateinit var itemsList: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager

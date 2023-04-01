@@ -22,7 +22,7 @@
             android:id="@+id/inventory_item_avatar"
             android:layout_width="150sp"
             android:layout_height="150sp"
-            android:src="@drawable/inventory_item_shirt_red"
+            android:src="@drawable/inventory_item_sportradar_shirt"
             android:layout_marginTop="-20dp"
             android:layout_gravity="center" />
 
