@@ -33,12 +33,6 @@ class UsersAdapter(
         }
     }
 
-    fun setUsers(users: List<User>) {
-        this.users.clear()
-        this.users.addAll(users)
-        notifyDataSetChanged()
-    }
-
     inner class UserHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
         private var view: View = v
         private var user: User? = null

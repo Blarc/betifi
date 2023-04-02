@@ -54,16 +54,12 @@ class ItemsAdapter(
         override fun onClick(v: View?) {
             v?.context?.let { context ->
                 if (context is ChallengeCreateActivity) {
-                    UIUtils.replaceFragment(
-                        context,
-                        R.id.challenge_create_fragment_container,
-                        ChallengeCreateFragment::class.java
-                    )
+                    context.supportFragmentManager.popBackStack()
                 }
 
                 if (context is MainActivity) {
 
-                    var curEquippedList2 = equippedList?.filter { it.type != item?.type }?.toMutableList()
+                    val curEquippedList2 = equippedList?.filter { it.type != item?.type }?.toMutableList()
                     item?.let { curEquippedList2?.add(it) }
 
                     FirebaseUtils.updateUserEquippedItems(FirebaseUtils.getIdOfCurUser(), curEquippedList2);

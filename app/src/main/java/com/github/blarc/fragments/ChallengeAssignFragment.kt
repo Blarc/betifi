@@ -1,15 +1,15 @@
 package com.github.blarc.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.github.blarc.MyApplication
 import com.github.blarc.R
 import com.github.blarc.adapters.UsersAdapter
 import com.github.blarc.entity.User
@@ -48,7 +48,7 @@ class ChallengeAssignFragment : Fragment() {
         friendsList = view.findViewById(R.id.assign_challenge_users_list)
 
         FirebaseUtils.subscribeToUsersOnFirebase {
-            setupFriendsList(it)
+            setupFriendsList(it.filter { user -> user.userId != MyApplication.curUserId })
         }
 
     }

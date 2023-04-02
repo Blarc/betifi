@@ -11,7 +11,7 @@ class ChallengeCreateActivity : AppCompatActivity() {
 
     var selectedFriend: User? = null
     var selectedUser: User? = null
-    var challenge: Challenge? = null
+    var challenge: Challenge = Challenge()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_challenge_create)

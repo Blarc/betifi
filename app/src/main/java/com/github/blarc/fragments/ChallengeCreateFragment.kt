@@ -18,10 +18,12 @@ class ChallengeCreateFragment : Fragment() {
 
     private lateinit var challengeTitle: EditText
     private lateinit var challengeDescription: EditText
-    private lateinit var challengesDate: EditText
+    private lateinit var challengeDate: EditText
+    private lateinit var challengeDuration: EditText
     private lateinit var receiveItemBtn: Button
     private lateinit var giveItemBtn: Button
     private lateinit var createChallengeBtn: Button
+
     companion object {
         @JvmStatic
         fun newInstance() = ChallengeCreateFragment()
@@ -37,13 +39,24 @@ class ChallengeCreateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        challengeTitle = view.findViewById(R.id.challenge_title_input)
-        challengeDescription = view.findViewById(R.id.challenge_title_desc)
-        challengesDate = view.findViewById(R.id.challenge_title_date)
-
         val challengeCreateActivity = view.context as ChallengeCreateActivity
+        val challenge = challengeCreateActivity.challenge
+
+        challengeTitle = view.findViewById(R.id.challenge_title_input)
+        challengeTitle.setText(challenge.name)
+
+        challengeDescription = view.findViewById(R.id.challenge_title_desc)
+        challengeDescription.setText(challenge.description)
+
+        challengeDate = view.findViewById(R.id.challenge_title_date)
+        challengeDate.setText(challenge.dueTo)
+
+        challengeDuration = view.findViewById(R.id.challenge_duration)
+        challengeDuration.setText(challenge.duration?.toString())
+
         receiveItemBtn = view.findViewById(R.id.challenge_receive_item)
         receiveItemBtn.setOnClickListener {
+            updateChallenge(challenge)
             challengeCreateActivity.selectedUser = challengeCreateActivity.selectedFriend
             UIUtils.replaceFragment(
                 requireActivity(),
@@ -54,6 +67,7 @@ class ChallengeCreateFragment : Fragment() {
 
         giveItemBtn = view.findViewById(R.id.challenge_give_item)
         giveItemBtn.setOnClickListener {
+            updateChallenge(challenge)
             FirebaseUtils.getUserOnFirebase {
                 challengeCreateActivity.selectedUser = it
                 UIUtils.replaceFragment(
@@ -66,20 +80,21 @@ class ChallengeCreateFragment : Fragment() {
 
         createChallengeBtn = view.findViewById(R.id.create_challenge_create_user_btn)
         createChallengeBtn.setOnClickListener {
-            val newChallenge = createChallenge()
+            updateChallenge(challenge)
             FirebaseUtils.getUserOnFirebase {
                 it?.let { user ->
                     FirebaseUtils.updateUserChallenges(
                         user.userId,
-                        user.challenges.plus(newChallenge)
-                    )}
+                        user.challenges.plus(challengeCreateActivity.challenge)
+                    )
+                }
             }
 
             val selectedUser = challengeCreateActivity.selectedUser
             selectedUser?.let {
                 FirebaseUtils.updateUserChallenges(
                     it.userId,
-                    it.challenges.plus(newChallenge)
+                    it.challenges.plus(challengeCreateActivity.challenge)
                 )
             }
 
@@ -91,18 +106,13 @@ class ChallengeCreateFragment : Fragment() {
         }
     }
 
-    private fun createChallenge(): Challenge {
-        return Challenge(
-            challengeTitle.text.toString(),
-            challengeDescription.text.toString(),
-            challengesDate.text.toString(),
-            "friend",
-            null,
-            null,
-            null,
-            null,
-            "in_progress"
-        )
+    private fun updateChallenge(challenge: Challenge) {
+        challenge.name = challengeTitle.text.toString()
+        challenge.description = challengeDescription.text.toString()
+        challenge.dueTo = challengeDate.text.toString()
+        challenge.duration = challengeDuration.text.toString().toInt()
+        challenge.type = "friend"
+        challenge.status = "in_progress"
     }
 }
 
