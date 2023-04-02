@@ -46,24 +46,24 @@ class CharacterFragment : Fragment() {
         val levelTextField = view.findViewById<TextView>(R.id.level)
         levelTextField.text = "Level " + MyApplication.level.toString()
 
-        val svgImageView1 = view.findViewById<ImageView>(R.id.svgImageView1)
-        svgImageView1.setOnClickListener {
 
-            FirebaseUtils.subscribeToUserEquipmentOnFirebase { equipmentList ->
+        FirebaseUtils.subscribeToUserEquipmentOnFirebase { equipmentList ->
 
-                // TODO: Set equipment images via it
+            // TODO: Set equipment images via it
 
-                // Loop through equipment views and set click listeners
-                for (equipmentView in equipmentViews) {
-                    val svgImageView = view.findViewById<ImageView>(equipmentView.value)
+            // Loop through equipment views and set click listeners
+            for (equipmentView in equipmentViews) {
+                val svgImageView = view.findViewById<ImageView>(equipmentView.value)
 
-                    svgImageView.setOnClickListener {
-                        UIUtils.replaceFragment(
-                            requireActivity(),
-                            R.id.main_fragment_container,
-                            InventoryFragment.newInstance(equipmentView.key, equipmentList.toMutableList())
+                svgImageView.setOnClickListener {
+                    UIUtils.replaceFragment(
+                        requireActivity(),
+                        R.id.main_fragment_container,
+                        InventoryFragment.newInstance(
+                            equipmentView.key,
+                            equipmentList.toMutableList()
                         )
-                    }
+                    )
                 }
             }
         }
