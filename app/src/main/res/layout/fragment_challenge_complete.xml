@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ChallengeCompleteFragment">
+    tools:context=".fragments.ChallengeCompleteFragment"
+    android:background="@drawable/chest_2">
 
     <TextView
         android:id="@+id/fragmentChallengeCompleteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Moonlight Gloves"
-        android:textSize="30sp"
+        android:textSize="40sp"
+        android:textColor="@color/orange"
+        android:fontFamily="@font/poppins"
         app:layout_constraintBottom_toTopOf="@id/fragmentChallengeCompleteImageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,20 +24,26 @@
         android:id="@+id/fragmentChallengeCompleteImageView"
         android:layout_width="200sp"
         android:layout_height="200sp"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/inventory_item_eestech_pants"
         app:layout_constraintBottom_toTopOf="@+id/fragmentChallengeCompleteButtonComplete"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentChallengeCompleteTextView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.392" />
 
     <Button
         android:id="@+id/fragmentChallengeCompleteButtonComplete"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Take"
+        android:text="Claim item"
+        android:layout_margin="20sp"
+        android:textSize="30sp"
+        android:fontFamily="@font/poppins"
+        android:background="@drawable/button_border"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentChallengeCompleteImageView"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
