@@ -183,6 +183,7 @@
             >
 
             <Button
+                android:id="@+id/details_challenge_accept_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/accept_button_bg"
@@ -194,6 +195,7 @@
                 />
 
             <Button
+                android:id="@+id/details_challenge_decline_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/decline_button_bg"

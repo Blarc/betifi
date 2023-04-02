@@ -1,5 +1,6 @@
 package com.github.blarc.fragments
 
+import android.content.Intent
 import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.github.blarc.R
 import com.github.blarc.UIUtils.replaceFragment
+import com.github.blarc.activities.ChallengeDetailActivity
+import com.github.blarc.activities.MainActivity
 import com.github.blarc.entity.Challenge
 import com.github.blarc.entity.Item
 import com.github.blarc.firebase.FirebaseUtils
@@ -30,6 +33,8 @@ class ChallengeDetailFragment : Fragment() {
     private lateinit var requestedItemLayout: LinearLayout
     private lateinit var bettedItemLayout: LinearLayout
     private lateinit var acceptDeclineLayout: LinearLayout
+    private lateinit var acceptChallengeBtn: Button
+    private lateinit var declineChallengeBtn: Button
 
     private lateinit var requestedItemImage: ImageView
 
@@ -79,6 +84,9 @@ class ChallengeDetailFragment : Fragment() {
         descriptionTextView = view.findViewById(R.id.challenge_title_desc)
         durationTextView = view.findViewById(R.id.challenge_detail_duration)
 
+        acceptChallengeBtn = view.findViewById(R.id.details_challenge_accept_btn)
+        declineChallengeBtn = view.findViewById(R.id.details_challenge_decline_btn)
+
         var item: Item? = null
 
         if (challenge.type == "friend") {
@@ -103,6 +111,12 @@ class ChallengeDetailFragment : Fragment() {
                     "drawable",
                     view.context.packageName
                 ).let { imageId -> bettedItemImage.setImageResource(imageId) }
+            }
+
+            acceptChallengeBtn.setOnClickListener {
+                val intent = Intent(context, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
             }
 
         } else {
