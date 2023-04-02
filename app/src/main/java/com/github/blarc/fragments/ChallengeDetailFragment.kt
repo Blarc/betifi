@@ -19,6 +19,7 @@ class ChallengeDetailFragment : Fragment() {
     private lateinit var challengeFinishButton: Button
     private lateinit var descriptionTextView: TextView
     private lateinit var titleTextView: TextView
+    private lateinit var durationTextView: TextView
 
     private var challenge: Challenge? = null
 
@@ -51,13 +52,17 @@ class ChallengeDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dueOrCompletedTextView = view.findViewById(R.id.details_challenge_due_or_completed)
+        dueOrCompletedTextView = view.findViewById(R.id.challenge_title_date)
         challengeFinishButton = view.findViewById(R.id.details_challenge_finish_btn)
         titleTextView = view.findViewById(R.id.challenge_title_input)
         descriptionTextView = view.findViewById(R.id.challenge_title_desc)
+        durationTextView = view.findViewById(R.id.challenge_detail_duration)
 
         titleTextView.text = challenge?.name ?: "No title."
         descriptionTextView.text = challenge?.description ?: "No description"
+        if (challenge?.duration != null) {
+            durationTextView.text = challenge?.duration.toString()
+        }
 
         challengeFinishButton.setOnClickListener {
             replaceFragment(
