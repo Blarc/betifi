@@ -40,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
             MyApplication.curUserId = userIdValue
             FirebaseUtils.getUserOnFirebase {
                 if (it != null) {
+                    MyApplication.level = it.level
                     Log.d(TAG, "User $userIdValue already exists")
                     navigateToMainActivity()
                     return@getUserOnFirebase
@@ -48,8 +49,9 @@ class LoginActivity : AppCompatActivity() {
                 // Create the user in the database
                 FirebaseUtils.subscribeToSpecificItem("0") {item ->
 
-                    val user = User(userIdValue, listOf(), listOf())
-                    if (item != null) {
+                    val user = User(userIdValue, 1, listOf(), listOf())
+                    MyApplication.level = 1
+                        if (item != null) {
                         user.items = listOf(item)
                     }
 

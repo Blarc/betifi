@@ -7,5 +7,6 @@ import java.util.Optional
 internal class MyApplication : Application() {
     companion object {
         var curUserId: String = ""
+        var level: Int = 1
     }
 }

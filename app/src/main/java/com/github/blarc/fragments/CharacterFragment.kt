@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.caverock.androidsvg.SVGImageView
+import com.github.blarc.MyApplication
 import com.github.blarc.R
 import com.github.blarc.UIUtils
 import com.github.blarc.firebase.FirebaseUtils
@@ -36,23 +39,31 @@ class CharacterFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_character, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val usernameTextField = view.findViewById<TextView>(R.id.usernameText)
+        usernameTextField.text = MyApplication.curUserId
 
-        FirebaseUtils.subscribeToUserEquipmentOnFirebase {
+        val levelTextField = view.findViewById<TextView>(R.id.level)
+        levelTextField.text = "Level " + MyApplication.level.toString()
 
-            // TODO: Set equipment images via it
+        val svgImageView1 = view.findViewById<ImageView>(R.id.svgImageView1)
+        svgImageView1.setOnClickListener {
 
-            // Loop through equipment views and set click listeners
-            for (equipmentView in equipmentViews) {
-                val svgImageView = view.findViewById<ImageView>(equipmentView.value)
+            FirebaseUtils.subscribeToUserEquipmentOnFirebase { equipmentList ->
 
-                svgImageView.setOnClickListener {
-                    UIUtils.replaceFragment(
-                        requireActivity(),
-                        R.id.main_fragment_container,
-                        InventoryFragment.newInstance(equipmentView.key)
-                    )
+                // TODO: Set equipment images via it
+
+                // Loop through equipment views and set click listeners
+                for (equipmentView in equipmentViews) {
+                    val svgImageView = view.findViewById<ImageView>(equipmentView.value)
+
+                    svgImageView.setOnClickListener {
+                        UIUtils.replaceFragment(
+                            requireActivity(),
+                            R.id.main_fragment_container,
+                            InventoryFragment.newInstance(equipmentView.key, equipmentList.toMutableList())
+                        )
+                    }
                 }
             }
         }

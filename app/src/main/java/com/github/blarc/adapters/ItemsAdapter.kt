@@ -8,13 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.blarc.R
 import com.github.blarc.UIUtils
 import com.github.blarc.activities.ChallengeCreateActivity
+import com.github.blarc.activities.MainActivity
 import com.github.blarc.entity.Item
+import com.github.blarc.firebase.FirebaseUtils
 import com.github.blarc.fragments.ChallengeCreateFragment
+import com.github.blarc.fragments.CharacterFragment
 import com.github.blarc.inflate
 import java.util.*
 
 class ItemsAdapter(
-    private var items: List<Item>
+    private var items: List<Item>,
+    private var equippedList: MutableList<Item>?
 ): RecyclerView.Adapter<ItemsAdapter.ItemHolder>() {
 
     private val rarityOpacity = mapOf(
@@ -56,8 +60,21 @@ class ItemsAdapter(
                         ChallengeCreateFragment::class.java
                     )
                 }
-            }
 
+                if (context is MainActivity) {
+
+                    var curEquippedList2 = equippedList?.filter { it.type != item?.type }?.toMutableList()
+                    item?.let { curEquippedList2?.add(it) }
+
+                    FirebaseUtils.updateUserEquippedItems(FirebaseUtils.getIdOfCurUser(), curEquippedList2);
+
+                    UIUtils.replaceFragment(
+                        context,
+                        R.id.main_fragment_container,
+                        CharacterFragment::class.java
+                    )
+                }
+            }
         }
 
         fun bindItem(item: Item) {

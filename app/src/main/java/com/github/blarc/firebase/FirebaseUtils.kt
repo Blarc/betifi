@@ -34,6 +34,10 @@ object FirebaseUtils {
         getUser(userId).child("challenges").setValue(challenges)
     }
 
+    fun updateUserEquippedItems(userId: String, equippedItems: List<Item>?) {
+        getUser(userId).child("equipment").setValue(equippedItems)
+    }
+
     fun assignItemToUser(item: Item) {
         val newItemRef = getUser(getIdOfCurUser()).child("items").push()
 
