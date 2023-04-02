@@ -52,9 +52,14 @@ class ChallengesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        generalChallengesBtn = view.findViewById(R.id.fragmentChallengesButtonGeneral)
+        friendsChallengesBtn = view.findViewById(R.id.fragmentChallengesButtonFriends)
+
         FirebaseUtils.subscribeToGeneralChallengesOnFirebase {
             generalChallenges = ArrayList(it)
             if (firstTime || isGeneral) {
+                generalChallengesBtn.alpha = 0.5f
+                friendsChallengesBtn.alpha = 1.0f
                 setupChallengesList(generalChallenges)
                 firstTime = false
             }
@@ -64,15 +69,17 @@ class ChallengesFragment : Fragment() {
             friendsChallenges = ArrayList(it)
         }
 
-        generalChallengesBtn = view.findViewById(R.id.fragmentChallengesButtonGeneral)
         generalChallengesBtn.setOnClickListener {
             isGeneral = true
+            generalChallengesBtn.alpha = 0.5f
+            friendsChallengesBtn.alpha = 1.0f
             setupChallengesList(generalChallenges)
         }
 
-        friendsChallengesBtn = view.findViewById(R.id.fragmentChallengesButtonFriends)
         friendsChallengesBtn.setOnClickListener {
             isGeneral = false
+            generalChallengesBtn.alpha = 1.0f
+            friendsChallengesBtn.alpha = 0.5f
             setupChallengesList(friendsChallenges)
         }
 
