@@ -34,14 +34,12 @@ object FirebaseUtils {
         getUser(userId).child("challenges").setValue(challenges)
     }
 
-    fun updateUserEquippedItems(userId: String, equippedItems: List<Item>?) {
-        getUser(userId).child("equipment").setValue(equippedItems)
+    fun updateUserItems(userId: String, items: List<Item>) {
+        getUser(userId).child("items").setValue(items)
     }
 
-    fun assignItemToUser(item: Item) {
-        val newItemRef = getUser(getIdOfCurUser()).child("items").push()
-
-        newItemRef.setValue(item);
+    fun updateUserEquippedItems(userId: String, equippedItems: List<Item>?) {
+        getUser(userId).child("equipment").setValue(equippedItems)
     }
 
     fun subscribeToFriendsChallengesOnFirebase(setValue: (List<Challenge>) -> Unit) {
@@ -96,6 +94,33 @@ object FirebaseUtils {
         // fill in user items list
         database.getReference("users").child(getIdOfCurUser()).child("items")
             .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val userItemsIn = mutableListOf<Item>()
+
+                    // Loop through the children of the "items" node and create an Item object for each child
+                    for (itemSnapshot in dataSnapshot.children) {
+                        val item = itemSnapshot.getValue(Item::class.java)
+
+                        if (item != null) {
+                            userItemsIn.add(item)
+                        } else {
+                            Log.d(ContentValues.TAG, "item can not be deserialized!")
+                        }
+                    }
+
+                    setValue(userItemsIn)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.e(ContentValues.TAG, "onCancelled", databaseError.toException())
+                }
+            })
+    }
+
+    fun getUserItemsOnFirebase(setValue: (List<Item>) -> Unit) {
+        // fill in user items list
+        database.getReference("users").child(getIdOfCurUser()).child("items")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val userItemsIn = mutableListOf<Item>()
 

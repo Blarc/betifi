@@ -9,9 +9,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.github.blarc.MyApplication
 import com.github.blarc.R
 import com.github.blarc.activities.MainActivity
 import com.github.blarc.entity.Item
+import com.github.blarc.firebase.FirebaseUtils
 
 
 class ChallengeCompleteFragment(private val item: Item?) : Fragment() {
@@ -50,6 +52,19 @@ class ChallengeCompleteFragment(private val item: Item?) : Fragment() {
 
 
         completeChallengeBtn.setOnClickListener {
+
+            FirebaseUtils.getUserItemsOnFirebase { items ->
+
+                item?.let { item ->
+                    FirebaseUtils.updateUserItems(MyApplication.curUserId, items.plus(item))
+                }
+
+                val intent = Intent(context, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+
+            }
+
             val intent = Intent(context, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
