@@ -110,7 +110,9 @@ class ChallengeCreateFragment : Fragment() {
         challenge.name = challengeTitle.text.toString()
         challenge.description = challengeDescription.text.toString()
         challenge.dueTo = challengeDate.text.toString()
-        challenge.duration = challengeDuration.text.toString().toInt()
+        if (challengeDuration.text.isNotBlank()) {
+            challenge.duration = challengeDuration.text.toString().toInt()
+        }
         challenge.type = "friend"
         challenge.status = "in_progress"
     }

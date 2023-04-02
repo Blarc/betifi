@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,7 @@ class InventoryFragment(private val itemType: String? = null, val equipmentList:
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var adapter: ItemsAdapter
+    private lateinit var emptyTextView: TextView
 
     companion object {
         @JvmStatic
@@ -39,12 +41,16 @@ class InventoryFragment(private val itemType: String? = null, val equipmentList:
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        emptyTextView = view.findViewById(R.id.fragmentInventoryEmptyInventoryTextView)
+        swipeRefreshLayout = view.findViewById(R.id.fragmentInventorySwipeRefreshLayout)
+        itemsList = view.findViewById(R.id.fragmentInventoryRecylerView)
+
+
         var selectedUser: User? = null
         if (context is ChallengeCreateActivity) {
             selectedUser = (context as ChallengeCreateActivity).selectedUser
         }
 
-        itemsList = view.findViewById(R.id.fragmentInventoryRecylerView)
         if (selectedUser != null) {
             setupItemsList(selectedUser.items)
         } else {
@@ -57,14 +63,23 @@ class InventoryFragment(private val itemType: String? = null, val equipmentList:
             }
         }
 
-        swipeRefreshLayout = view.findViewById(R.id.fragmentInventorySwipeRefreshLayout)
         swipeRefreshLayout.setOnRefreshListener {
             Toast.makeText(context, "Refreshed", Toast.LENGTH_SHORT).show()
             // TODO @Blarc: Refresh challenges array
             swipeRefreshLayout.isRefreshing = false
         }
+
     }
     private fun setupItemsList(items: List<Item>) {
+
+        if (items.isEmpty()) {
+            emptyTextView.visibility = View.VISIBLE
+            swipeRefreshLayout.visibility = View.GONE
+        } else {
+            emptyTextView.visibility = View.GONE
+            swipeRefreshLayout.visibility = View.VISIBLE
+        }
+
         linearLayoutManager = LinearLayoutManager(context)
 
         adapter = ItemsAdapter(items, equipmentList)
