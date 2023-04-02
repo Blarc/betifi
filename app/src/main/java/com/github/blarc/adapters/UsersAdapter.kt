@@ -58,8 +58,8 @@ class UsersAdapter(
             this.user = user
 
 //            val assignBtn: ImageButton = view.findViewById(R.id.assign_challenge_to_friend_btn)
-            val fireNumberTextView: TextView = view.findViewById(R.id.assign_item_fire_number)
-            fireNumberTextView.text = Random.nextInt(12).toString()
+//            val fireNumberTextView: TextView = view.findViewById(R.id.assign_item_fire_number)
+//            fireNumberTextView.text = Random.nextInt(12).toString()
 
             val friendUsernameTextView: TextView = view.findViewById(R.id.user_item_user_name)
             friendUsernameTextView.text = user.userId

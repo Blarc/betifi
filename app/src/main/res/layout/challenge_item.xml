@@ -8,12 +8,12 @@
     <LinearLayout
         android:id="@+id/challenge_item_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/challenge_shape_orange"
+        android:background="@drawable/challenge_item_border"
         android:layout_margin="5dp"
 
         android:orientation="horizontal">
@@ -24,20 +24,12 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/challenge_item_creator_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Martin Božič"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:textSize="14dp"
-                />
-
-            <TextView
                 android:id="@+id/challenge_item_challenge_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins"
                 android:text="MOUNTAIN HIKE"
                 android:textColor="@color/black"
                 android:textSize="20dp"
@@ -48,10 +40,11 @@
                 android:id="@+id/challenge_item_due"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Due to: today"
+                android:fontFamily="@font/poppins"
+                android:text="1 DAY"
                 android:paddingStart="20dp"
                 android:paddingBottom="10dp"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 />
 
 

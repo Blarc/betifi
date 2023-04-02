@@ -48,19 +48,15 @@ class ChallengesAdapter(
         fun bindChallenge(challenge: Challenge) {
             this.challenge = challenge
 
-            val creatorName: TextView = view.findViewById(R.id.challenge_item_creator_name)
-            creatorName.text = challenge.challengeCreator?.replaceFirstChar {
-                if (it.isLowerCase()) it.titlecase(
-                    Locale.getDefault()
-                ) else it.toString()
-            }
-
             val titleTextView: TextView = view.findViewById(R.id.challenge_item_challenge_title)
             titleTextView.text = challenge.name.replaceFirstChar {
                 if (it.isLowerCase()) it.titlecase(
                     Locale.getDefault()
                 ) else it.toString()
             }
+
+            val dueTextView: TextView = view.findViewById(R.id.challenge_item_due)
+            dueTextView.text = "${challenge.duration.toString()} days"
         }
     }
 }

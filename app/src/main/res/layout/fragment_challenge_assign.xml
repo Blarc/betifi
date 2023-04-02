@@ -6,56 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ChallengeAssignFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:text="Search:"
-        android:textColor="#6691b4"
-        android:textSize="20dp">
 
-    </TextView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/challenge_input_field"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_search">
-
-        </ImageView>
-
-        <EditText
-            android:id="@+id/challenge_title_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="40dp"
-            android:hint="Search"
-            android:text=""
-            android:textSize="20dp">
-
-        </EditText>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="100dp"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/challenge_title_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_regular"
+                android:background="@drawable/login_field_with_shadow"
+                android:hint="Friend's username..."
+                android:paddingStart="40dp"
+                android:textSize="20dp">
+
+<!--            <EditText-->
+<!--                android:id="@+id/activityLoginEditTextName"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:ems="10"-->
+<!--                android:inputType="textPersonName"-->
+<!--                android:hint="Username..."-->
+<!--                android:paddingLeft="50dp"-->
+<!--                android:paddingRight="50dp"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:fontFamily="@font/poppins_regular"-->
+<!--                android:background="@drawable/login_field_with_shadow"/>-->
+
+            </EditText>
+
+        </LinearLayout>
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -68,30 +57,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:overScrollMode="never"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:scrollbars="none"
                 tools:listitem="@layout/assign_challenge_item" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="right">
-
-        <Button
-            android:id="@+id/assign_challenge_done_btn"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_gravity="bottom"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp"
-            android:text="Done">
-
-        </Button>
 
     </LinearLayout>
 </FrameLayout>
