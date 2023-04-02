@@ -9,7 +9,7 @@ data class Challenge(
     var type: String = "general",
     var dueTo: String? = null, // timestamp
     var duration: Int? = null,
-    val givingItem: Item? = null,
-    val acceptingItem: Item? = null,
+    var givingItem: Item? = null,
+    var acceptingItem: Item? = null,
     var status: String? = null
 ) : Serializable

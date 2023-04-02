@@ -55,6 +55,7 @@ class ChallengeCreateFragment : Fragment() {
         challengeDuration.setText(challenge.duration?.toString())
 
         receiveItemBtn = view.findViewById(R.id.challenge_receive_item)
+        challenge.acceptingItem?.let { receiveItemBtn.text = it.name }
         receiveItemBtn.setOnClickListener {
             updateChallenge(challenge)
             challengeCreateActivity.selectedUser = challengeCreateActivity.selectedFriend
@@ -66,6 +67,7 @@ class ChallengeCreateFragment : Fragment() {
         }
 
         giveItemBtn = view.findViewById(R.id.challenge_give_item)
+        challenge.givingItem?.let { giveItemBtn.text = it.name }
         giveItemBtn.setOnClickListener {
             updateChallenge(challenge)
             FirebaseUtils.getUserOnFirebase {

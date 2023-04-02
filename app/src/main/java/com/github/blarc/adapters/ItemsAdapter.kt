@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.github.blarc.MyApplication
 import com.github.blarc.R
 import com.github.blarc.UIUtils
 import com.github.blarc.activities.ChallengeCreateActivity
@@ -54,6 +55,13 @@ class ItemsAdapter(
         override fun onClick(v: View?) {
             v?.context?.let { context ->
                 if (context is ChallengeCreateActivity) {
+                    context.selectedUser?.let {
+                        if (it.userId == MyApplication.curUserId) {
+                            context.challenge.givingItem = item
+                        } else {
+                            context.challenge.acceptingItem = item
+                        }
+                    }
                     context.supportFragmentManager.popBackStack()
                 }
 
