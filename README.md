@@ -1,5 +1,5 @@
 <p align="center">
-<img src=https://github.com/Blarc/eestech-challenge-2023/blob/f8a93fecb431b22e5cf963bd97ce4c8febde71ca/app/src/main/res/mipmap-xxxhdpi/betifi.png alt="grow-together-logo" width="200" />
+<img src=https://github.com/Blarc/betifi/blob/4b8ab78c6c0902ce608396346c6e12073fc88654/static/betifi_splash.jpg alt="grow-together-logo" width="800" />
 
 # BETifI
 
